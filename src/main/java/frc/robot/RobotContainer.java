@@ -65,10 +65,10 @@ public class RobotContainer {
     // ---------- YOUR JOB ----------
     /*
      * TO DO:
-     * Bind the A button to run the motor forward while held.
+     * Bind a button (not b) to run the motor forward while held.
      * Make "off" the motor's default command.
      * 
-     * Bind the B button to run the motor BACKWARD while held.
+     * Bind a button (not currently bound to anything) to run the motor BACKWARD while held.
      */
 
   }

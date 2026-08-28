@@ -59,6 +59,13 @@ public class WorkshopMotorSubsystem extends SubsystemBase {
     m_io.setPercentOutput(percent);
   }
 
+  /*
+   * Helper that stops the motor.
+   */
+  public void stop(){
+    m_io.stop();
+  }
+
   // ---------- EXAMPLE COMMAND FACTORY ----------
   /** 
    * Command factory that runs the motor at a fixed percent output for as long as it is scheduled.
@@ -74,7 +81,7 @@ public class WorkshopMotorSubsystem extends SubsystemBase {
   /*
    * TO DO:
    * This should return a command that runs the motor at the forward voltage from Constants.
-   * Think about what helper motor command you should use (hint: WorkshopMotorIO.java)!
+   * Hint: think about what helpers you can use!
    */
   public Command motorForwardCommand(){
     return run(() -> {}).withName("motorForwardCommand");
@@ -83,7 +90,7 @@ public class WorkshopMotorSubsystem extends SubsystemBase {
   /*
    * TO DO:
    * This should return a command that runs the motor at the backward voltage from Constants.
-   * Think about what helper motor command you should use (hint: WorkshopMotorIO.java)!
+   * Hint: Think about what helpers you can use!
    */
   public Command motorBackwardCommand(){
     return run(() -> {}).withName("motorBackwardCommand");
@@ -92,7 +99,7 @@ public class WorkshopMotorSubsystem extends SubsystemBase {
   /*
    * TO DO:
    * This should return a command that turns the motor off by commanding 0 volts.
-   * Think about what helper motor command you should use (hint: WorkshopMotorIO.java)!
+   * Hint: Think about what helpers you can use!
    */
   public Command offCommand(){
     return run(() -> {}).withName("offCommand");
