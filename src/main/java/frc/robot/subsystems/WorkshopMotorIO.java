@@ -5,9 +5,12 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.controls.DutyCycleOut;
 import com.ctre.phoenix6.controls.VoltageOut;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.InvertedValue;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.WorkshopMotorConstants;
 
 /**
@@ -70,6 +73,18 @@ public class WorkshopMotorIO {
   public void setVoltage(double volts) {
     // VoltageOut is a Phoenix 6 "control request": it tells the motor what we want it to do.
     motor.setControl(new VoltageOut(volts));
+  }
+
+  /**
+   * Commands the motor to a percentage of the available supply voltage (a "duty cycle").
+   *
+   * @param percent proportion of supply voltage to apply, from -1.0 (full reverse) to +1.0 (full
+   *     forward). Unlike {@link #setVoltage(double)}, the resulting force depends on the current
+   *     battery voltage.
+   */
+  public void setPercentOutput(double percent) {
+    // DutyCycleOut is the Phoenix 6 control request for percent-of-supply output.
+    motor.setControl(new DutyCycleOut(percent));
   }
 
   /** Stops the motor by commanding zero volts. */
