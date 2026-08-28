@@ -8,6 +8,7 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.WorkshopMotorSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -22,6 +23,9 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
+  // The workshop motor subsystem the students will drive from the controller.
+  private final WorkshopMotorSubsystem m_motor = new WorkshopMotorSubsystem();
+
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
@@ -32,16 +36,23 @@ public class RobotContainer {
     configureBindings();
   }
 
-  /**
-   * Use this method to define your trigger->command mappings. Triggers can be created via the
-   * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with an arbitrary
-   * predicate, or via the named factories in {@link
-   * edu.wpi.first.wpilibj2.command.button.CommandGenericHID}'s subclasses for {@link
-   * CommandXboxController Xbox}/{@link edu.wpi.first.wpilibj2.command.button.CommandPS4Controller
-   * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
-   * joysticks}.
-   */
   private void configureBindings() {
+    /* --- WORKSHOP MOTOR BINDINGS -----------------------------------------------------------
+     * A button on the controller returns a Trigger. Types of Triggers:
+     *    .whileTrue(cmd)  runs cmd only WHILE the button is held, and CANCELS it the moment the
+     *                     button is released.
+     * 
+     *    .onTrue(cmd)     schedules cmd ONCE when the button is first pressed. The command
+     *                     then keeps running on its own until it finishes or is interrupted -
+     *                     releasing the button does NOT stop it.
+     * 
+     * 
+     * --- SUBSYSTEM DEFAULT COMMANDS --------------------------------------------------------
+     * A subsystem's "default command" runs automatically whenever no other command is using that
+     * subsystem.
+     */
+
+    // ---------- CODE EXAMPLES ----------
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
     new Trigger(m_exampleSubsystem::exampleCondition)
         .onTrue(new ExampleCommand(m_exampleSubsystem));
@@ -49,11 +60,21 @@ public class RobotContainer {
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
     m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
+
+
+    // ---------- YOUR JOB ----------
+    /*
+     * TO DO:
+     * Bind the A button to run the motor forward while held.
+     * Make "off" the motor's default command.
+     * 
+     * Bind the B button to run the motor BACKWARD while held.
+     */
+
   }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
