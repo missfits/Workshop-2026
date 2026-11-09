@@ -45,4 +45,11 @@ public final class Constants {
     // Voltage applied to drive the motor backward
     public static final double BACK_VOLTAGE = -3.0;
   }
+
+    public static class LEDConstants { // placeholder constants
+    public static final int KPORT = 0;
+    public static final int KLENGTH = 60;
+
+    public static final double BLINK_TIME = 1; // in seconds for after intake/outtake
+  }
 }
